@@ -331,12 +331,13 @@ function Kavo.CreateLib(kavName, themeList)
         game.TweenService:Create(Main, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
 			Size = UDim2.new(0,0,0,0),
 			Position = UDim2.new(0, Main.AbsolutePosition.X + (Main.AbsoluteSize.X / 2), 0, Main.AbsolutePosition.Y + (Main.AbsoluteSize.Y / 2))
-		}):Play()
+        }):Play()
         wait(1)
         ScreenGui:Destroy()
+    end)
 
     ----------------------------------------------------------------
-    -- Minimize to circle (v to expand)
+    -- Свернуть окно / Развернуть окно
     ----------------------------------------------------------------
     local __kavo_isMinimized = false
     local __kavo_normalSize = Main.Size
@@ -355,6 +356,7 @@ function Kavo.CreateLib(kavName, themeList)
     minimize.Text = "—"
     minimize.TextSize = 18
     minimize.TextColor3 = Color3.fromRGB(245, 245, 245)
+    minimize:SetAttribute("Hint", "свернуть окно")
 
     -- Circle widget
     local miniCircle = Instance.new("Frame")
@@ -382,6 +384,7 @@ function Kavo.CreateLib(kavName, themeList)
     miniBtn.Text = "v"
     miniBtn.TextSize = 22
     miniBtn.TextColor3 = themeList.TextColor
+    miniBtn:SetAttribute("Hint", "развернуть")
 
     -- Make the circle draggable too
     Kavo:DraggingEnabled(miniCircle, miniCircle)
@@ -443,8 +446,6 @@ function Kavo.CreateLib(kavName, themeList)
     miniBtn.MouseButton1Click:Connect(__kavo_expandFromCircle)
 
     ----------------------------------------------------------------
-
-    end)
 
     MainSide.Name = "MainSide"
     MainSide.Parent = Main
